@@ -10,7 +10,7 @@ export function useExportPdf() {
     const {user1} = useCompareStore();
     const pageRef = useRef(null)
 
-    const exportPdf = useCallback(async (ref, filename = `GitHub analys ${user1}`) => {
+    const exportPdf = useCallback(async (ref, filename = `GitHub analysis ${user1}`) => {
 
         const isLight = document.body.classList.contains('light')
         document.body.classList.add('light')

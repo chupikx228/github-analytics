@@ -1,0 +1,214 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.userCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  padding: $space-4;
+  transition:
+          border-color $transition-base,
+          box-shadow $transition-base;
+
+  @media (min-width: $bp-md) {
+    padding: $space-6;
+  }
+
+  &:hover {
+    border-color: rgba($accent, 0.25);
+    box-shadow: $shadow-hover;
+  }
+}
+
+.userCardHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-4;
+  padding-bottom: $space-4;
+  border-bottom: 1px solid var(--border);
+
+  @media (min-width: $bp-md) {
+    gap: $space-4;
+    margin-bottom: $space-5;
+    padding-bottom: $space-5;
+  }
+}
+
+.userCardAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-full;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  transition: border-color $transition-base;
+
+  @media (min-width: $bp-md) {
+    width: 56px;
+    height: 56px;
+  }
+
+  .userCard:hover & {
+    border-color: rgba($accent, 0.4);
+  }
+}
+
+.userCardAvatarSkeleton {
+  @include skeleton;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-full;
+  border: none;
+
+  @media (min-width: $bp-md) {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.userCardName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.03em;
+
+  @media (min-width: $bp-md) {
+    font-size: 18px;
+  }
+}
+
+.userCardNameSkeleton {
+  @include skeleton;
+  width: 120px;
+  height: 18px;
+  border-radius: $radius-sm;
+
+  @media (min-width: $bp-md) {
+    width: 140px;
+    height: 20px;
+  }
+}
+
+.userCardRepo {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-3;
+  background: var(--row);
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  margin-top: $space-2;
+  transition:
+          background $transition-fast,
+          border-color $transition-fast;
+
+  @media (min-width: $bp-md) {
+    gap: $space-3;
+    padding: $space-3 $space-4;
+  }
+
+  &:hover {
+    background: var(--row);
+    border-color: rgba($accent, 0.15);
+  }
+}
+
+.userCardRepoSkeleton {
+  @include skeleton;
+  height: 40px;
+  border-radius: $radius-md;
+  border: none;
+  margin-top: $space-2;
+
+  @media (min-width: $bp-md) {
+    height: 44px;
+  }
+}
+
+.userCardRepoName {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  font-family: $font-mono;
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @media (min-width: $bp-md) {
+    font-size: 13px;
+  }
+}
+
+.userCardRepoLanguage {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  background: $accent-dim;
+  border: 1px solid rgba($accent, 0.2);
+  border-radius: $radius-full;
+  padding: 2px $space-2;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  @media (min-width: $bp-md) {
+    font-size: 11px;
+  }
+}
+
+.userCardRepoDate {
+  display: none;
+  font-size: 11px;
+  color: $text-muted;
+  font-family: $font-mono;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  @media (min-width: $bp-md) {
+    display: block;
+  }
+}
+
+.userCardSkeleton {
+  pointer-events: none;
+}
+
+.userCardError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  font-size: 13px;
+  color: $danger;
+  border-color: rgba($danger, 0.2);
+  background: rgba($danger, 0.04);
+}
+
+.userCardLoadMore {
+  width: 100%;
+  margin-top: $space-3;
+  height: 38px;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: $radius-md;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: $font-sans;
+  cursor: pointer;
+  transition:
+          color $transition-fast,
+          border-color $transition-fast,
+          background $transition-fast;
+
+  &:hover {
+    color: var(--accent);
+    border-color: rgba($accent, 0.4);
+    background: $accent-dim;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}

@@ -1,0 +1,127 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding: $space-4;
+
+  @media (min-width: $bp-md) {
+    padding: $space-8 $space-6;
+  }
+}
+
+.pageContainer {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+
+  @media (min-width: $bp-md) {
+    gap: $space-6;
+  }
+}
+
+.pageBackBtn {
+  height: 36px;
+  padding: 0 $space-4;
+  background: transparent;
+  color: $text-muted;
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: $font-sans;
+  cursor: pointer;
+  transition:
+          color $transition-fast,
+          border-color $transition-fast,
+          background $transition-fast;
+
+  &:hover {
+    color: var(--text);
+    border-color: lighten($border, 8%);
+    background: rgba($border, 0.3);
+  }
+}
+
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  @media (min-width: $bp-md) {
+    gap: $space-5;
+  }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+  padding: $space-12 $space-6;
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: $radius-xl;
+  text-align: center;
+}
+
+.emptyStateIcon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.emptyStateTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.emptyStateSubtitle {
+  font-size: 13px;
+  color: $text-muted;
+}
+
+.pageNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+}
+
+.pageExportBtn {
+  height: 36px;
+  padding: 0 $space-4;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba($accent, 0.4);
+  border-radius: $radius-md;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: $font-sans;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+          background $transition-fast,
+          box-shadow $transition-fast,
+          transform $transition-base;
+
+  &:hover {
+    background: $accent-dim;
+    box-shadow: 0 4px 16px rgba($accent, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

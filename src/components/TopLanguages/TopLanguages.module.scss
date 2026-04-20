@@ -1,0 +1,74 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.topLanguages {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  width: 100%;
+}
+
+.topLanguagesTitle {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $text-muted;
+  margin-bottom: $space-2;
+
+  @media (min-width: $bp-md) {
+    font-size: 11px;
+  }
+}
+
+.topLanguagesItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  background: var(--row);
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  transition:
+          background $transition-fast,
+          border-color $transition-fast;
+
+  &:hover {
+    bbackground: var(--row-hover);
+    border-color: rgba($accent, 0.15);
+  }
+}
+
+.topLanguagesItemInfo {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+.topLanguagesItemIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: $radius-sm;
+  flex-shrink: 0;
+
+  @media (min-width: $bp-md) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.topLanguagesItemName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  font-family: $font-mono;
+}
+
+.topLanguagesItemCount {
+  font-size: 12px;
+  color: $text-muted;
+  font-family: $font-mono;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

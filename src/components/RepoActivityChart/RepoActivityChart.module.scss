@@ -1,0 +1,84 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.chart {
+  width: 100%;
+  overflow: hidden;
+}
+
+.chartLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+  margin-bottom: $space-4;
+
+  @media (min-width: $bp-md) {
+    gap: $space-5;
+    margin-bottom: $space-4;
+  }
+}
+
+.chartLegendItem {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: 12px;
+  color: var(--text-muted);
+
+  @media (min-width: $bp-md) {
+    font-size: 13px;
+  }
+}
+
+.chartLegendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.chartFooter {
+  margin-top: $space-3;
+  font-size: 11px;
+  color: var(--text-muted);
+
+  @media (min-width: $bp-md) {
+    font-size: 12px;
+  }
+}
+
+.tooltip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  font-size: 12px;
+
+  @media (min-width: $bp-md) {
+    font-size: 13px;
+  }
+}
+
+.tooltipLabel {
+  margin: 0 0 $space-2;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.tooltipEntry {
+  margin: 2px 0;
+}
+
+.tooltipEntryName {
+  font-weight: 500;
+}
+
+.stateText {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.stateTextError {
+  font-size: 13px;
+  color: $danger;
+}

@@ -1,7 +1,7 @@
 import useGithubUser from "../../hooks/useGithubUser.ts";
 import useGitHubRepos from "../../hooks/useGithubRepos.ts";
 import styles from './UserCard.module.scss'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {motion} from "framer-motion";
 
 interface UserCardProps{
@@ -13,6 +13,10 @@ const UserCard = ({user} : UserCardProps) => {
     const { data : userData, isLoading: userLoading, isError: userError } = useGithubUser(user)
     const { data: repos, isLoading: reposLoading, isError: reposError} = useGitHubRepos(user)
 
+
+    useEffect(()=>{
+        setVisibleCount(4)
+    }, [user])
     const [visibleCount, setVisibleCount] = useState<number>(4)
 
 
@@ -70,7 +74,10 @@ const UserCard = ({user} : UserCardProps) => {
                 ))
                 }
                 {visibleCount < repos?.length &&
-                    <button className={styles.userCardLoadMore} onClick={() => setVisibleCount(prev => prev + 4)}>Load More</button>}
+                    <button className={styles.userCardLoadMore} onClick={() => {
+                        setVisibleCount(prev => prev + 4)
+                    }
+                    }>Load More</button>}
             </div>
         </>
     )

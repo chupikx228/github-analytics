@@ -7,12 +7,15 @@ import {TopLanguages} from "../../components/TopLanguages/TopLanguages.tsx";
 import styles from './UserComparePage.module.scss';
 import ErrorBoundary from "../../ErrorBoundary/ErrorBoundary.tsx";
 import {useEffect} from "react";
+import useGitHubRepos from "../../hooks/useGithubRepos.ts";
 
 
 function UserComparePage() {
 
     let {paramUser1 , paramUser2} = useParams();
     const navigate = useNavigate();
+    const { data: repos, } = useGitHubRepos()
+
 
     const {user1, user2, setUser1, setUser2} = useCompareStore();
 
@@ -54,17 +57,22 @@ function UserComparePage() {
                         </ErrorBoundary>
 
                         <ErrorBoundary>
-                        <div className={styles.pageChart}>
-                            <RepoActivityChart userA={user1 || paramUser1} userB={user2 || paramUser2} />
-                        </div>
+                            {repos?.length > 0 && (
+                                <div className={styles.pageChart}>
+                                    <RepoActivityChart userA={user1 || paramUser1} userB={user2 || paramUser2} />
+                                </div>
+                            )}
                         </ErrorBoundary>
 
 
                         <ErrorBoundary>
-                        <div className={styles.pageLanguages}>
-                            <TopLanguages user={user1 || paramUser1} />
-                            <TopLanguages user={user2 || paramUser2} />
-                        </div>
+                            {repos?.length > 0 &&(
+                                <div className={styles.pageLanguages}>
+                                    <TopLanguages user={user1 || paramUser1} />
+                                    <TopLanguages user={user2 || paramUser2} />
+                                </div>
+                            )}
+
                         </ErrorBoundary>
 
                     </div>

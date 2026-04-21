@@ -8,9 +8,12 @@ import RepoActivityChart from "../../components/RepoActivityChart/RepoActivityCh
 import ErrorBoundary from "../../ErrorBoundary/ErrorBoundary.tsx";
 import {useEffect, useRef} from "react";
 import {useExportPdf} from "../../hooks/useExportPDF.ts";
+import useGitHubRepos from "../../hooks/useGithubRepos.ts";
+
 
 export const AboutUserPage = () =>{
     const {user1, setUser1} = useCompareStore();
+    const {data: repos} = useGitHubRepos()
     const navigate = useNavigate();
     let {paramUser1} = useParams();
 
@@ -57,8 +60,11 @@ export const AboutUserPage = () =>{
                     <ErrorBoundary>
                         <div className={styles.pageContent} ref={pageRef}>
                             <UserCard user={user1 || paramUser1} />
-                            <RepoActivityChart userA={user1 || paramUser1} />
-                            {user1 && (
+
+                            {repos?.length > 0 &&
+                                (<RepoActivityChart userA={user1 || paramUser1}/>
+                                )}
+                            {(user1) && (repos?.length > 0) &&(
                                 <TopLanguages user={user1 || paramUser1} />
                             )}
                         </div>

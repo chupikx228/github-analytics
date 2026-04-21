@@ -16,8 +16,14 @@ function UserComparePage() {
     const navigate = useNavigate();
     const { data: repos, } = useGitHubRepos()
 
-
     const {user1, user2, setUser1, setUser2} = useCompareStore();
+
+    const firstUserRepos = useGitHubRepos(user1)
+    const secondUserRepos = useGitHubRepos(user2)
+
+    const hasRepoData = firstUserRepos.data?.length > 0  && secondUserRepos.data?.length > 0
+
+
 
 
     const handleCompare = (firstUser: string, secondUser: string) => {
@@ -57,7 +63,7 @@ function UserComparePage() {
                         </ErrorBoundary>
 
                         <ErrorBoundary>
-                            {repos?.length > 0 && (
+                            {hasRepoData && (
                                 <div className={styles.pageChart}>
                                     <RepoActivityChart userA={user1 || paramUser1} userB={user2 || paramUser2} />
                                 </div>
@@ -66,7 +72,7 @@ function UserComparePage() {
 
 
                         <ErrorBoundary>
-                            {repos?.length > 0 &&(
+                            {(firstUserRepos.data?.length > 0 || secondUserRepos.data?.length > 0) && (
                                 <div className={styles.pageLanguages}>
                                     <TopLanguages user={user1 || paramUser1} />
                                     <TopLanguages user={user2 || paramUser2} />

@@ -13,7 +13,8 @@ import useGitHubRepos from "../../hooks/useGithubRepos.ts";
 
 export const AboutUserPage = () =>{
     const {user1, setUser1} = useCompareStore();
-    const {data: repos} = useGitHubRepos()
+    const firstUserRepos = useGitHubRepos(user1)
+    const hasAnyData = firstUserRepos.data?.length > 0;
     const navigate = useNavigate();
     let {paramUser1} = useParams();
 
@@ -61,10 +62,10 @@ export const AboutUserPage = () =>{
                         <div className={styles.pageContent} ref={pageRef}>
                             <UserCard user={user1 || paramUser1} />
 
-                            {repos?.length > 0 &&
+                            {hasAnyData &&
                                 (<RepoActivityChart userA={user1 || paramUser1}/>
                                 )}
-                            {(user1) && (repos?.length > 0) &&(
+                            {(user1) && (hasAnyData) &&(
                                 <TopLanguages user={user1 || paramUser1} />
                             )}
                         </div>
